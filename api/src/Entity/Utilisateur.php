@@ -2,7 +2,6 @@
 
 namespace App\Entity;
 
-use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -11,35 +10,34 @@ use Symfony\Component\Security\Core\User\UserInterface;
  * TODO Supprimer cette ligne dans le bundle
  * @ORM\Entity
  */
-#[ApiResource()]
-class Utilisateur implements UserInterface
+abstract class Utilisateur implements UserInterface
 {
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
-    private ?int $id = null;
+    protected ?int $id = null;
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
      */
-    private string $email;
+    protected string $email;
 
     /**
      * @ORM\Column(type="json")
      */
-    private array $roles = [];
+    protected array $roles = [];
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private string $nom;
+    protected string $nom;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private string $prenom;
+    protected string $prenom;
 
     public function getId(): ?int
     {
