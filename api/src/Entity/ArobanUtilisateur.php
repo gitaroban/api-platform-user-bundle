@@ -2,12 +2,14 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiProperty;
 use Doctrine\ORM\Mapping as ORM;
 use JetBrains\PhpStorm\Pure;
 use Symfony\Component\Security\Core\User\LegacyPasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Serializer\Annotation\SerializedName;
 use Symfony\Component\Validator\Constraints as Assert;
 
 class ArobanUtilisateur implements UserInterface, PasswordAuthenticatedUserInterface, LegacyPasswordAuthenticatedUserInterface
@@ -17,6 +19,8 @@ class ArobanUtilisateur implements UserInterface, PasswordAuthenticatedUserInter
      * @ORM\GeneratedValue(strategy="UUID")
      * @ORM\Column(type="integer")
      */
+    #[ApiProperty(identifier: true)]
+    #[SerializedName('id')]
     #[Groups(['user:read'])]
     protected ?int $uuid = null;
 
