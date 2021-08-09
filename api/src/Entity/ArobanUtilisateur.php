@@ -15,14 +15,15 @@ use Symfony\Component\Validator\Constraints as Assert;
 class ArobanUtilisateur implements UserInterface, PasswordAuthenticatedUserInterface, LegacyPasswordAuthenticatedUserInterface
 {
     /**
-     * @ORM\Id)
-     * @ORM\GeneratedValue(strategy="UUID")
-     * @ORM\Column(type="integer")
+     * @ORM\Id
+     * @ORM\Column(type="uuid", unique=true)
+     * @ORM\GeneratedValue(strategy="CUSTOM")
+     * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
      */
     #[ApiProperty(identifier: true)]
     #[SerializedName('id')]
     #[Groups(['user:read'])]
-    protected ?int $uuid = null;
+    protected ?string $uuid = null;
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
@@ -53,7 +54,7 @@ class ArobanUtilisateur implements UserInterface, PasswordAuthenticatedUserInter
     #[Groups(['user:read', 'user:write'])]
     protected string $prenom;
 
-    public function getUuid(): ?int
+    public function getUuid(): ?string
     {
         return $this->uuid;
     }
