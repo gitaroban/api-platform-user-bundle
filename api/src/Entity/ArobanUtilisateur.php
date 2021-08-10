@@ -54,6 +54,12 @@ class ArobanUtilisateur implements UserInterface, PasswordAuthenticatedUserInter
     #[Groups(['user:read', 'user:write'])]
     protected string $prenom;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    #[Groups(['user:read', 'admin:write'])]
+    protected bool $actif = false;
+
     public function getUuid(): ?string
     {
         return $this->uuid;
@@ -151,5 +157,17 @@ class ArobanUtilisateur implements UserInterface, PasswordAuthenticatedUserInter
     public function getPrenomNom($separateur = null): string
     {
         return implode($separateur ?? ' ', [$this->prenom, $this->nom]);
+    }
+
+    public function getActif(): ?bool
+    {
+        return $this->actif;
+    }
+
+    public function setActif(bool $actif): self
+    {
+        $this->actif = $actif;
+
+        return $this;
     }
 }
