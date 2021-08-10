@@ -5,25 +5,26 @@ namespace App\Entity;
 use ApiPlatform\Core\Annotation\ApiProperty;
 use Doctrine\ORM\Mapping as ORM;
 use JetBrains\PhpStorm\Pure;
+use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\Security\Core\User\LegacyPasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
-use Symfony\Component\Serializer\Annotation\SerializedName;
 use Symfony\Component\Validator\Constraints as Assert;
 
 class ArobanUtilisateur implements UserInterface, PasswordAuthenticatedUserInterface, LegacyPasswordAuthenticatedUserInterface
 {
     /**
+     * @var ?UuidInterface
+     *
      * @ORM\Id
      * @ORM\Column(type="uuid", unique=true)
      * @ORM\GeneratedValue(strategy="CUSTOM")
      * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
      */
     #[ApiProperty(identifier: true)]
-    #[SerializedName('id')]
     #[Groups(['user:read'])]
-    protected ?string $uuid = null;
+    protected ?UuidInterface $id = null;
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
@@ -60,9 +61,9 @@ class ArobanUtilisateur implements UserInterface, PasswordAuthenticatedUserInter
     #[Groups(['user:read', 'admin:write'])]
     protected bool $actif = false;
 
-    public function getUuid(): ?string
+    public function getId(): ?UuidInterface
     {
-        return $this->uuid;
+        return $this->id;
     }
 
     public function getEmail(): ?string
