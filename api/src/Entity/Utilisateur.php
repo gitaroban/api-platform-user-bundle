@@ -13,6 +13,9 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 #[ApiResource(
     collectionOperations: ['get', 'post'],
     itemOperations: ['get', 'patch'],
+    attributes: [
+        'pagination_items_per_page' => 10,
+    ],
     denormalizationContext: ['groups' => 'user:write'],
     normalizationContext: ['groups' => 'user:read']
 )]
