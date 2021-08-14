@@ -41,26 +41,6 @@ class ArobanUtilisateur implements UserInterface, PasswordAuthenticatedUserInter
     #[Groups(['user:read', 'admin:write'])]
     protected array $roles = [];
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank(message="Le nom de l'utilisateur est obligatoire.")
-     */
-    #[Groups(['user:read', 'user:write'])]
-    protected string $nom;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank(message="Le prénom de l'utilisateur est obligatoire.")
-     */
-    #[Groups(['user:read', 'user:write'])]
-    protected string $prenom;
-
-    /**
-     * @ORM\Column(type="boolean")
-     */
-    #[Groups(['user:read', 'admin:write'])]
-    protected bool $actif = false;
-
     public function getId(): ?UuidInterface
     {
         return $this->id;
@@ -124,51 +104,5 @@ class ArobanUtilisateur implements UserInterface, PasswordAuthenticatedUserInter
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
-    }
-
-    public function getNom(): ?string
-    {
-        return $this->nom;
-    }
-
-    public function setNom(string $nom): self
-    {
-        $this->nom = $nom;
-
-        return $this;
-    }
-
-    public function getPrenom(): ?string
-    {
-        return $this->prenom;
-    }
-
-    public function setPrenom(string $prenom): self
-    {
-        $this->prenom = $prenom;
-
-        return $this;
-    }
-
-    public function getNomPrenom($separateur = null): string
-    {
-        return implode($separateur ?? ' ', [$this->nom, $this->prenom]);
-    }
-
-    public function getPrenomNom($separateur = null): string
-    {
-        return implode($separateur ?? ' ', [$this->prenom, $this->nom]);
-    }
-
-    public function getActif(): ?bool
-    {
-        return $this->actif;
-    }
-
-    public function setActif(bool $actif): self
-    {
-        $this->actif = $actif;
-
-        return $this;
     }
 }
