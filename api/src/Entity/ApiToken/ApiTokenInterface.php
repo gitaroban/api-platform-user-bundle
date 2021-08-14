@@ -3,10 +3,12 @@
 namespace App\Entity\ApiToken;
 
 use App\Entity\ArobanUtilisateur\ArobanUtilisateurInterface;
+use Ramsey\Uuid\UuidInterface;
 
+// TODO Déplacer dans le bundle
 interface ApiTokenInterface
 {
-    public function getId(): ?int;
+    public function getId(): ?UuidInterface;
 
     public function getToken(): ?string;
 
