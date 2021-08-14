@@ -41,6 +41,11 @@ class ArobanUtilisateur implements UserInterface, PasswordAuthenticatedUserInter
     #[Groups(['user:read', 'admin:write'])]
     protected array $roles = [];
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    protected string $password;
+
     public function getId(): ?UuidInterface
     {
         return $this->id;
@@ -92,7 +97,14 @@ class ArobanUtilisateur implements UserInterface, PasswordAuthenticatedUserInter
 
     public function getPassword(): ?string
     {
-        return null;
+        return $this->password;
+    }
+
+    public function setPassword(string $password): self
+    {
+        $this->password = $password;
+
+        return $this;
     }
 
     public function getSalt(): ?string
