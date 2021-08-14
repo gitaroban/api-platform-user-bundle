@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
+use ApiPlatform\Core\Api\IriConverterInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class SecurityController extends AbstractController
@@ -12,7 +14,7 @@ class SecurityController extends AbstractController
         name: 'app_login',
         methods: ['POST']
     )]
-    public function login()
+    public function login(IriConverterInterface $iriConverter)
     {
         if (!$this->isGranted('IS_AUTHENTICATED_FULLY')) {
             return $this->json([
@@ -21,8 +23,17 @@ class SecurityController extends AbstractController
         }
 
         // TODO Retourner un token qui sera ensuite utilisé pour l'authentification dans /api/*
-        return $this->json([
-            'user' => $this->getUser() ? $this->getUser()->getId() : null,
+        return new Response(null, 204, [
+            'Location' => $iriConverter->getIriFromItem($this->getUser()),
         ]);
+    }
+
+    #[Route(
+        path: '/logout',
+        name: 'app_logout'
+    )]
+    public function logout()
+    {
+        throw new \Exception('should not be reached!');
     }
 }
