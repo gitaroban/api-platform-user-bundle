@@ -5,7 +5,6 @@ namespace App\Entity\ApiToken;
 use App\Entity\ArobanUtilisateur\ArobanUtilisateurInterface;
 use App\Repository\ApiTokenRepository;
 use Doctrine\ORM\Mapping as ORM;
-use Ramsey\Uuid\UuidInterface;
 
 /**
  * @ORM\Entity(repositoryClass=ApiTokenRepository::class)
@@ -17,7 +16,7 @@ class ApiToken implements ApiTokenInterface
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
-    private ?UuidInterface $id = null;
+    private ?int $id = null;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -41,7 +40,7 @@ class ApiToken implements ApiTokenInterface
         $this->expiresAt = $expiresAt;
     }
 
-    public function getId(): ?UuidInterface
+    public function getId(): ?int
     {
         return $this->id;
     }
