@@ -12,6 +12,7 @@ class UtilisateurFixture extends Fixture
     {
         $admin = new Utilisateur();
         $admin->setEmail('support@aroban.com');
+        $admin->setPassword('$argon2id$v=19$m=65536,t=4,p=1$euzoHp1den4TsjizUxCI5g$H3yEB6fRrWdzXc/2czhku+Ae/AcYcL3uVK2YhQeIPGI');
         $admin->setRoles(['ROLE_USER']);
         $manager->persist($admin);
 
