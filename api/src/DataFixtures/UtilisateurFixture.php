@@ -12,8 +12,6 @@ class UtilisateurFixture extends Fixture
     {
         $admin = new Utilisateur();
         $admin->setEmail('support@aroban.com');
-        $admin->setNom('Aroban');
-        $admin->setPrenom('Admin');
         $admin->setRoles(['ROLE_USER']);
         $manager->persist($admin);
 
