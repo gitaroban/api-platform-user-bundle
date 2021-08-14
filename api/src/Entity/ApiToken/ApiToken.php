@@ -34,6 +34,13 @@ class ApiToken implements ApiTokenInterface
      */
     private ArobanUtilisateurInterface $utilisateur;
 
+    public function __construct(ArobanUtilisateurInterface $utilisateur, \DateTimeInterface $expiresAt)
+    {
+        $this->token = bin2hex(random_bytes(60));
+        $this->utilisateur = $utilisateur;
+        $this->expiresAt = $expiresAt;
+    }
+
     public function getId(): ?UuidInterface
     {
         return $this->id;
@@ -44,34 +51,13 @@ class ApiToken implements ApiTokenInterface
         return $this->token;
     }
 
-    public function setToken(string $token): self
-    {
-        $this->token = $token;
-
-        return $this;
-    }
-
     public function getExpiresAt(): ?\DateTimeInterface
     {
         return $this->expiresAt;
     }
 
-    public function setExpiresAt(\DateTimeInterface $expiresAt): self
-    {
-        $this->expiresAt = $expiresAt;
-
-        return $this;
-    }
-
     public function getUtilisateur(): ?ArobanUtilisateurInterface
     {
         return $this->utilisateur;
-    }
-
-    public function setUtilisateur(?ArobanUtilisateurInterface $utilisateur): self
-    {
-        $this->utilisateur = $utilisateur;
-
-        return $this;
     }
 }
