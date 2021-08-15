@@ -3,9 +3,7 @@
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
-use App\Entity\ApiToken\ApiTokenInterface;
 use App\Entity\ArobanUtilisateur\ArobanUtilisateur;
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -25,4 +23,16 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 )]
 class Utilisateur extends ArobanUtilisateur
 {
+    /**
+     * @ORM\OneToMany(targetEntity=ApiToken::class, mappedBy="utilisateur")
+     */
+    protected Collection $apiTokens;
+
+    /**
+     * @return Collection|ApiToken[]
+     */
+    public function getApiTokens(): Collection|array
+    {
+        return $this->apiTokens;
+    }
 }

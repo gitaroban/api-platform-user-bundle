@@ -3,7 +3,6 @@
 namespace App\Entity\ArobanUtilisateur;
 
 use ApiPlatform\Core\Annotation\ApiProperty;
-use App\Entity\ApiToken;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -53,9 +52,11 @@ class ArobanUtilisateur implements ArobanUtilisateurInterface
     protected ?string $plainPassword;
 
     /**
-     * @ORM\OneToMany(targetEntity=ApiToken::class, mappedBy="utilisateur")
+     * La propriété doit être redéfinie et annotée dans l'entité héritée pour pouvoir être managée par Doctrine.
+     *
+     * @var Collection
      */
-    private Collection $apiTokens;
+    protected Collection $apiTokens;
 
     #[Pure]
     public function __construct()
@@ -148,7 +149,7 @@ class ArobanUtilisateur implements ArobanUtilisateurInterface
     }
 
     /**
-     * @return Collection|ApiToken[]
+     * @return Collection|array
      */
     public function getApiTokens(): Collection|array
     {
