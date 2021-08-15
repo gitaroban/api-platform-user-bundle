@@ -25,3 +25,7 @@ services:
     # please note that last definitions always *replace* previous ones
 
     App\DataPersister\UtilisateurDataPersister: ~
+
+    Aroban\Bundle\UtilisateurBundle\Security\ApiTokenAuthenticator: ~
+
+    Aroban\Bundle\UtilisateurBundle\Repository\ArobanUtilisateurRepositoryInterface: '@App\Repository\UtilisateurRepository'
