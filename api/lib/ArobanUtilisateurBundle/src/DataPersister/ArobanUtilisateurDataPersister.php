@@ -58,7 +58,7 @@ class ArobanUtilisateurDataPersister implements DataPersisterInterface
 
     private function setDefaultRoles(ArobanUtilisateurInterface $arobanUtilisateur): void
     {
-        if (null === $arobanUtilisateur->getId()) {
+        if (!$arobanUtilisateur->getId()) {
             $arobanUtilisateur->setRoles(['ROLE_USER']);
         }
     }
