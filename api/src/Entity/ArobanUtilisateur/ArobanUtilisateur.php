@@ -10,6 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
 use JetBrains\PhpStorm\Pure;
 use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Serializer\Annotation\SerializedName;
 use Symfony\Component\Validator\Constraints as Assert;
 
 // TODO Déplacer dans le bundle
@@ -47,7 +48,9 @@ class ArobanUtilisateur implements ArobanUtilisateurInterface
      */
     protected string $password;
 
-    protected string $plainPassword;
+    #[SerializedName('password')]
+    #[Groups(['user:write'])]
+    protected ?string $plainPassword;
 
     /**
      * @ORM\OneToMany(targetEntity=ApiToken::class, mappedBy="utilisateur")
@@ -126,7 +129,7 @@ class ArobanUtilisateur implements ArobanUtilisateurInterface
         return $this->plainPassword;
     }
 
-    public function setPlainPassword(string $plainPassword): self
+    public function setPlainPassword(?string $plainPassword): self
     {
         $this->plainPassword = $plainPassword;
 
