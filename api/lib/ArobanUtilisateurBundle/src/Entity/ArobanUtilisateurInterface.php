@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Entity\ArobanUtilisateur;
+namespace Aroban\Bundle\UtilisateurBundle\Entity;
 
 use Doctrine\Common\Collections\Collection;
 use Symfony\Component\Security\Core\User\UserInterface;

@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Entity\ApiToken;
+namespace Aroban\Bundle\UtilisateurBundle\Entity;
 
-use App\Entity\ArobanUtilisateur\ArobanUtilisateurInterface;
+use Aroban\Bundle\UtilisateurBundle\Entity\ArobanUtilisateurInterface;
 use Doctrine\ORM\Mapping as ORM;
 
 class ArobanApiToken implements ArobanApiTokenInterface

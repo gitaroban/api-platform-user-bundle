@@ -1,8 +1,8 @@
 <?php
 
-namespace Aroban\Bundle\ArobanUtilisateurBundle;
+namespace Aroban\Bundle\UtilisateurBundle;
 
-use Aroban\Bundle\ArobanUtilisateurBundle\DependencyInjection\UtilisateurExtension;
+use Aroban\Bundle\UtilisateurBundle\DependencyInjection\UtilisateurExtension;
 use Symfony\Component\DependencyInjection\Extension\ExtensionInterface;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 

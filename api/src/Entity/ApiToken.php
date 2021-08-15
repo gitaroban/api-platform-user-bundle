@@ -2,9 +2,9 @@
 
 namespace App\Entity;
 
-use App\Entity\ApiToken\ArobanApiToken;
-use App\Entity\ArobanUtilisateur\ArobanUtilisateurInterface;
+use Aroban\Bundle\UtilisateurBundle\Entity\ArobanApiToken;
 use App\Repository\ApiTokenRepository;
+use Aroban\Bundle\UtilisateurBundle\Entity\ArobanUtilisateurInterface;
 use Doctrine\ORM\Mapping as ORM;
 
 /**

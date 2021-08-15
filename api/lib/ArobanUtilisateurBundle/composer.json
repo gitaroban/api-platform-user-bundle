@@ -1,0 +1,26 @@
+{
+    "name": "gitaroban/utilisateur-bundle",
+    "description": "Utilisateur",
+    "type": "symfony-bundle",
+    "authors": [
+        {
+            "name": "Aurélien Tournayre",
+            "email": "a.tournayre@aroban.com"
+        }
+    ],
+    "require": {
+        "php": ">=8.0.2"
+    },
+    "require-dev": {
+    },
+    "autoload": {
+        "psr-4": {
+            "Aroban\\Bundle\\UtilisateurBundle\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Aroban\\Bundle\\UtilisateurBundle\\Tests\\": "tests/"
+        }
+    }
+}

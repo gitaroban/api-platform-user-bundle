@@ -1,12 +1,11 @@
 <?php
 
-namespace App\Entity\ArobanUtilisateur;
+namespace Aroban\Bundle\UtilisateurBundle\Entity;
 
 use ApiPlatform\Core\Annotation\ApiProperty;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use JetBrains\PhpStorm\Pure;
 use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Serializer\Annotation\SerializedName;
@@ -57,7 +56,6 @@ class ArobanUtilisateur implements ArobanUtilisateurInterface
      */
     protected Collection $apiTokens;
 
-    #[Pure]
     public function __construct()
     {
         $this->apiTokens = new ArrayCollection();
@@ -90,7 +88,6 @@ class ArobanUtilisateur implements ArobanUtilisateurInterface
      *
      * @deprecated since Symfony 5.3, use getUserIdentifier instead
      */
-    #[Pure]
     public function getUsername(): string
     {
         return$this->getUserIdentifier();

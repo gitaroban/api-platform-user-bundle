@@ -1,6 +1,6 @@
 <?php
 
-namespace Aroban\Bundle\ArobanUtilisateurBundle\DependencyInjection;
+namespace Aroban\Bundle\UtilisateurBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;

@@ -1,6 +1,6 @@
 <?php
 
-namespace Aroban\Bundle\ArobanUtilisateurBundle\DependencyInjection;
+namespace Aroban\Bundle\UtilisateurBundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\Extension;
