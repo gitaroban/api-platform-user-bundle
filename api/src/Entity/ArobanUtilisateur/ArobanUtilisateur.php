@@ -31,7 +31,6 @@ class ArobanUtilisateur implements ArobanUtilisateurInterface
      * @ORM\Column(type="string", length=180, unique=true)
      * @Assert\NotBlank(message="L'email de l'utilisateur est obligatoire.")
      * @Assert\Email(message="L'email est invalide.")
-     * @Assert\Unique(message="L'email est déjà utilisé.")
      */
     #[Groups(['user:read', 'user:write'])]
     protected string $email;
