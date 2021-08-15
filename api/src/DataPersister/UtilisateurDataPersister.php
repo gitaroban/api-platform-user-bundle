@@ -5,17 +5,10 @@ namespace App\DataPersister;
 use ApiPlatform\Core\DataPersister\DataPersisterInterface;
 use App\Entity\ApiToken;
 use App\Entity\Utilisateur;
-use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Aroban\Bundle\UtilisateurBundle\DataPersister\ArobanUtilisateurDataPersister;
 
-class UtilisateurDataPersister implements DataPersisterInterface
+class UtilisateurDataPersister extends ArobanUtilisateurDataPersister implements DataPersisterInterface
 {
-    public function __construct(
-        private EntityManagerInterface $entityManager,
-        private UserPasswordEncoderInterface $userPasswordEncoder
-    )
-    {}
-
     /**
      * @inheritDoc
      */
@@ -38,30 +31,5 @@ class UtilisateurDataPersister implements DataPersisterInterface
         $this->entityManager->persist($apiToken);
 
         $this->entityManager->flush();
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function remove($data)
-    {
-        // On ne supprime pas un utilisateur.
-    }
-
-    private function encodePassword(Utilisateur $utilisateur): void
-    {
-        if ($utilisateur->getPlainPassword()) {
-            $utilisateur->setPassword(
-                $this->userPasswordEncoder->encodePassword($utilisateur, $utilisateur->getPlainPassword())
-            );
-            $utilisateur->eraseCredentials();
-        }
-    }
-
-    private function setDefaultRoles(Utilisateur $utilisateur): void
-    {
-        if (!$utilisateur->getId()) {
-            $utilisateur->setRoles(['ROLE_USER']);
-        }
     }
 }
