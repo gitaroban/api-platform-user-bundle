@@ -1,13 +1,12 @@
 <?php
 
-namespace App\DataPersister;
+namespace Aroban\Bundle\UtilisateurBundle\DataPersister;
 
 use ApiPlatform\Core\DataPersister\DataPersisterInterface;
 use Aroban\Bundle\UtilisateurBundle\Entity\ArobanUtilisateurInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
-// TODO Déplacer dans le bundle
 class ArobanUtilisateurDataPersister implements DataPersisterInterface
 {
     public function __construct(

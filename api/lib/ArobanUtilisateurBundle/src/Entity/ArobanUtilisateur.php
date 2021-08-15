@@ -11,7 +11,6 @@ use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Serializer\Annotation\SerializedName;
 use Symfony\Component\Validator\Constraints as Assert;
 
-// TODO Déplacer dans le bundle
 class ArobanUtilisateur implements ArobanUtilisateurInterface
 {
     /**
