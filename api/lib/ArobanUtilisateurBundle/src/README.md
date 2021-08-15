@@ -30,7 +30,9 @@ return [
 services:
 
     # Active le Data Persister du bundle (hash de mot de passe + création automatique d'un ApiToken)
-    Aroban\Bundle\UtilisateurBundle\DataPersister\ArobanUtilisateurDataPersister: ~
+    Aroban\Bundle\UtilisateurBundle\DataPersister\ArobanUtilisateurDataPersister:
+        tags: 
+            - { name: api_platform.data_persister, priority: -500 }
 ```
 
 ## Contribution
