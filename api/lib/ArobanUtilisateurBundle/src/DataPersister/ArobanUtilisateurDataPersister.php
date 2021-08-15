@@ -10,8 +10,8 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 class ArobanUtilisateurDataPersister implements DataPersisterInterface
 {
     public function __construct(
-        private EntityManagerInterface $entityManager,
-        private UserPasswordEncoderInterface $userPasswordEncoder
+        protected EntityManagerInterface $entityManager,
+        protected UserPasswordEncoderInterface $userPasswordEncoder
     )
     {}
 
@@ -44,7 +44,7 @@ class ArobanUtilisateurDataPersister implements DataPersisterInterface
         // On ne supprime pas un utilisateur.
     }
 
-    private function encodePassword(ArobanUtilisateurInterface $arobanUtilisateur): void
+    protected function encodePassword(ArobanUtilisateurInterface $arobanUtilisateur): void
     {
         if ($arobanUtilisateur->getPlainPassword()) {
             $arobanUtilisateur->setPassword(
@@ -54,7 +54,7 @@ class ArobanUtilisateurDataPersister implements DataPersisterInterface
         }
     }
 
-    private function setDefaultRoles(ArobanUtilisateurInterface $arobanUtilisateur): void
+    protected function setDefaultRoles(ArobanUtilisateurInterface $arobanUtilisateur): void
     {
         if (!$arobanUtilisateur->getId()) {
             $arobanUtilisateur->setRoles(['ROLE_USER']);
