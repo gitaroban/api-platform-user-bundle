@@ -3,7 +3,6 @@
 namespace App\DataPersister;
 
 use ApiPlatform\Core\DataPersister\DataPersisterInterface;
-use App\Entity\ApiToken\ArobanApiToken;
 use App\Entity\ArobanUtilisateur\ArobanUtilisateurInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
@@ -40,10 +39,7 @@ class ArobanUtilisateurDataPersister implements DataPersisterInterface
 
         $this->entityManager->persist($data);
 
-        if ($data->getApiTokens()->count() === 0) {
-            $apiToken = new ArobanApiToken($data);
-            $this->entityManager->persist($apiToken);
-        }
+        // TODO Ajouter la création de token
 
         $this->entityManager->flush();
     }
