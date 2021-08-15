@@ -47,11 +47,14 @@ class ArobanUtilisateur implements ArobanUtilisateurInterface
      */
     protected string $password;
 
+    protected string $plainPassword;
+
     /**
      * @ORM\OneToMany(targetEntity=ApiToken::class, mappedBy="utilisateur")
      */
     private Collection $apiTokens;
 
+    #[Pure]
     public function __construct()
     {
         $this->apiTokens = new ArrayCollection();
@@ -118,6 +121,18 @@ class ArobanUtilisateur implements ArobanUtilisateurInterface
         return $this;
     }
 
+    public function getPlainPassword(): ?string
+    {
+        return $this->plainPassword;
+    }
+
+    public function setPlainPassword(string $plainPassword): self
+    {
+        $this->plainPassword = $plainPassword;
+
+        return $this;
+    }
+
     public function getSalt(): ?string
     {
         return null;
@@ -126,7 +141,7 @@ class ArobanUtilisateur implements ArobanUtilisateurInterface
     public function eraseCredentials()
     {
         // If you store any temporary, sensitive data on the user, clear it here
-        // $this->plainPassword = null;
+        $this->plainPassword = null;
     }
 
     /**
