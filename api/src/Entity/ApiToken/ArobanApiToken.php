@@ -5,7 +5,7 @@ namespace App\Entity\ApiToken;
 use App\Entity\ArobanUtilisateur\ArobanUtilisateurInterface;
 use Doctrine\ORM\Mapping as ORM;
 
-class ArobanApiToken
+class ArobanApiToken implements ArobanApiTokenInterface
 {
     /**
      * @ORM\Id
