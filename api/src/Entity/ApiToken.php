@@ -12,9 +12,9 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class ApiToken extends ArobanApiToken
 {
-    public function __construct(ArobanUtilisateurInterface $utilisateur, \DateTimeInterface $expiresAt)
+    public function __construct(ArobanUtilisateurInterface $utilisateur, ?\DateTimeInterface $expiresAt = null)
     {
         parent::__construct($utilisateur);
-        $this->expiresAt = $expiresAt;
+        $this->expiresAt = $expiresAt ?? new \DateTime('+1 day');
     }
 }
