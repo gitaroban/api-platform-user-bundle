@@ -31,6 +31,7 @@ class ArobanUtilisateurDataPersister implements DataPersisterInterface
     public function persist($data)
     {
         $this->encodePassword($data);
+        $this->setDefaultRoles($data);
         $this->entityManager->persist($data);
 
         // TODO Ajouter la création de token
@@ -46,9 +47,6 @@ class ArobanUtilisateurDataPersister implements DataPersisterInterface
         // On ne supprime pas un utilisateur.
     }
 
-    /**
-     * @var ArobanUtilisateurInterface $arobanUtilisateur
-     */
     private function encodePassword(ArobanUtilisateurInterface $arobanUtilisateur): void
     {
         if ($arobanUtilisateur->getPlainPassword()) {
@@ -56,6 +54,13 @@ class ArobanUtilisateurDataPersister implements DataPersisterInterface
                 $this->userPasswordEncoder->encodePassword($arobanUtilisateur, $arobanUtilisateur->getPlainPassword())
             );
             $arobanUtilisateur->eraseCredentials();
+        }
+    }
+
+    private function setDefaultRoles(ArobanUtilisateurInterface $arobanUtilisateur): void
+    {
+        if (null === $arobanUtilisateur->getId()) {
+            $arobanUtilisateur->setRoles(['ROLE_USER']);
         }
     }
 }
