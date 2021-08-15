@@ -46,13 +46,16 @@ class ArobanUtilisateurDataPersister implements DataPersisterInterface
         // On ne supprime pas un utilisateur.
     }
 
-    private function encodePassword($data)
+    /**
+     * @var ArobanUtilisateurInterface $arobanUtilisateur
+     */
+    private function encodePassword(ArobanUtilisateurInterface $arobanUtilisateur): void
     {
-        if ($data->getPlainPassword()) {
-            $data->setPassword(
-                $this->userPasswordEncoder->encodePassword($data, $data->getPlainPassword())
+        if ($arobanUtilisateur->getPlainPassword()) {
+            $arobanUtilisateur->setPassword(
+                $this->userPasswordEncoder->encodePassword($arobanUtilisateur, $arobanUtilisateur->getPlainPassword())
             );
-            $data->eraseCredentials();
+            $arobanUtilisateur->eraseCredentials();
         }
     }
 }
