@@ -31,10 +31,8 @@ class ArobanUtilisateurDataPersister implements DataPersisterInterface
     {
         $this->encodePassword($data);
         $this->setDefaultRoles($data);
+
         $this->entityManager->persist($data);
-
-        // TODO Ajouter la création de token
-
         $this->entityManager->flush();
     }
 
