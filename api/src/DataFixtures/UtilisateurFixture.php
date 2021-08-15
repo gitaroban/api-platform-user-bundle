@@ -2,7 +2,7 @@
 
 namespace App\DataFixtures;
 
-use App\Entity\ApiToken\ApiToken;
+use App\Entity\ApiToken;
 use App\Entity\Utilisateur;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;

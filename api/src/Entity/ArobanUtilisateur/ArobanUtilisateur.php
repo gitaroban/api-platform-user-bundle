@@ -3,6 +3,9 @@
 namespace App\Entity\ArobanUtilisateur;
 
 use ApiPlatform\Core\Annotation\ApiProperty;
+use App\Entity\ApiToken;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use JetBrains\PhpStorm\Pure;
 use Ramsey\Uuid\UuidInterface;
@@ -43,6 +46,16 @@ class ArobanUtilisateur implements ArobanUtilisateurInterface
      * @ORM\Column(type="string", length=255)
      */
     protected string $password;
+
+    /**
+     * @ORM\OneToMany(targetEntity=ApiToken::class, mappedBy="utilisateur")
+     */
+    private Collection $apiTokens;
+
+    public function __construct()
+    {
+        $this->apiTokens = new ArrayCollection();
+    }
 
     public function getId(): ?UuidInterface
     {
@@ -114,5 +127,13 @@ class ArobanUtilisateur implements ArobanUtilisateurInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    /**
+     * @return Collection|ApiToken[]
+     */
+    public function getApiTokens(): Collection|array
+    {
+        return $this->apiTokens;
     }
 }

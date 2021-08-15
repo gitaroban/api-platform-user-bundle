@@ -3,41 +3,37 @@
 namespace App\Entity\ApiToken;
 
 use App\Entity\ArobanUtilisateur\ArobanUtilisateurInterface;
-use App\Repository\ApiTokenRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-/**
- * @ORM\Entity(repositoryClass=ApiTokenRepository::class)
- */
-class ApiToken implements ApiTokenInterface
+class ArobanApiToken
 {
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
-    private ?int $id = null;
+    protected ?int $id = null;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private string $token;
+    protected string $token;
 
     /**
      * @ORM\Column(type="datetime")
      */
-    private \DateTimeInterface $expiresAt;
+    protected \DateTimeInterface $expiresAt;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Utilisateur", inversedBy="apiTokens")
      */
-    private ArobanUtilisateurInterface $utilisateur;
+    protected ArobanUtilisateurInterface $utilisateur;
 
-    public function __construct(ArobanUtilisateurInterface $utilisateur, \DateTimeInterface $expiresAt)
+    public function __construct(ArobanUtilisateurInterface $utilisateur)
     {
         $this->token = bin2hex(random_bytes(60));
         $this->utilisateur = $utilisateur;
-        $this->expiresAt = $expiresAt;
+        $this->expiresAt = new \DateTime('+1 hour');
     }
 
     public function getId(): ?int

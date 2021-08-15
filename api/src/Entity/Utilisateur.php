@@ -11,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\UtilisateurRepository")
+ * @ORM\Entity(repositoryClass=UtilisateurRepository::class)
  * @UniqueEntity(fields={"email"})
  */
 #[ApiResource(
@@ -25,43 +25,4 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 )]
 class Utilisateur extends ArobanUtilisateur
 {
-    /**
-     * @ORM\OneToMany(targetEntity="App\Entity\ApiToken\ApiToken", mappedBy="utilisateur")
-     */
-    private Collection $apiTokens;
-
-    public function __construct()
-    {
-        $this->apiTokens = new ArrayCollection();
-    }
-
-    /**
-     * @return Collection|ApiTokenInterface[]
-     */
-    public function getApiTokens(): Collection
-    {
-        return $this->apiTokens;
-    }
-
-    public function addApiToken(ApiTokenInterface $apiToken): self
-    {
-        if (!$this->apiTokens->contains($apiToken)) {
-            $this->apiTokens[] = $apiToken;
-            $apiToken->setUtilisateur($this);
-        }
-
-        return $this;
-    }
-
-    public function removeApiToken(ApiTokenInterface $apiToken): self
-    {
-        if ($this->apiTokens->removeElement($apiToken)) {
-            // set the owning side to null (unless already changed)
-            if ($apiToken->getUtilisateur() === $this) {
-                $apiToken->setUtilisateur(null);
-            }
-        }
-
-        return $this;
-    }
 }
