@@ -4,15 +4,10 @@ namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
 use Aroban\Bundle\UtilisateurBundle\Entity\ArobanUtilisateur;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use App\Repository\UtilisateurRepository;
 
-/**
- * @ORM\Entity(repositoryClass=UtilisateurRepository::class)
- * @UniqueEntity(fields={"email"})
- */
 #[ApiResource(
     collectionOperations: ['get', 'post'],
     itemOperations: ['get', 'patch'],
@@ -22,18 +17,10 @@ use App\Repository\UtilisateurRepository;
     denormalizationContext: ['groups' => 'user:write'],
     normalizationContext: ['groups' => 'user:read']
 )]
+/**
+ * @ORM\Entity(repositoryClass=UtilisateurRepository::class)
+ * @UniqueEntity(fields={"email"})
+ */
 class Utilisateur extends ArobanUtilisateur
 {
-    /**
-     * @ORM\OneToMany(targetEntity=ApiToken::class, mappedBy="utilisateur")
-     */
-    protected Collection $apiTokens;
-
-    /**
-     * @return Collection|ApiToken[]
-     */
-    public function getApiTokens(): Collection|array
-    {
-        return $this->apiTokens;
-    }
 }
