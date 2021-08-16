@@ -12,6 +12,11 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class ApiToken extends ArobanApiToken
 {
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Utilisateur", inversedBy="apiTokens")
+     */
+    protected ArobanUtilisateurInterface $utilisateur;
+
     public function __construct(ArobanUtilisateurInterface $utilisateur, ?\DateTimeInterface $expiresAt = null)
     {
         parent::__construct($utilisateur);

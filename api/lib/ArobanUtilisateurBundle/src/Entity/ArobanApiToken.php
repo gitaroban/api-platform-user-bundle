@@ -25,7 +25,7 @@ class ArobanApiToken implements ArobanApiTokenInterface
     protected \DateTimeInterface $expiresAt;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Utilisateur", inversedBy="apiTokens")
+     * Overrider dans la classe qui étend ArobanApiToken pour la persistence Doctrine.
      */
     protected ArobanUtilisateurInterface $utilisateur;
 
