@@ -11,6 +11,11 @@ use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Serializer\Annotation\SerializedName;
 use Symfony\Component\Validator\Constraints as Assert;
 
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="utilisateur")
+ * @ORM\InheritanceType("SINGLE_TABLE")
+ */
 class ArobanUtilisateur implements ArobanUtilisateurInterface
 {
     /**
@@ -49,9 +54,8 @@ class ArobanUtilisateur implements ArobanUtilisateurInterface
     protected ?string $plainPassword;
 
     /**
-     * La propriété doit être redéfinie et annotée dans l'entité héritée pour pouvoir être managée par Doctrine.
-     *
      * @var Collection
+     * @ORM\OneToMany(targetEntity="Aroban\Bundle\UtilisateurBundle\Entity\ArobanApiToken", mappedBy="utilisateur")
      */
     protected Collection $apiTokens;
 

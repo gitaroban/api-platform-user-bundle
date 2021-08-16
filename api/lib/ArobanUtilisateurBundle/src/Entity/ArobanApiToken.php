@@ -2,9 +2,13 @@
 
 namespace Aroban\Bundle\UtilisateurBundle\Entity;
 
-use Aroban\Bundle\UtilisateurBundle\Entity\ArobanUtilisateurInterface;
 use Doctrine\ORM\Mapping as ORM;
 
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="api_token")
+ * @ORM\InheritanceType("SINGLE_TABLE")
+ */
 class ArobanApiToken implements ArobanApiTokenInterface
 {
     /**
@@ -25,7 +29,7 @@ class ArobanApiToken implements ArobanApiTokenInterface
     protected \DateTimeInterface $expiresAt;
 
     /**
-     * Overrider dans la classe qui étend ArobanApiToken pour la persistence Doctrine.
+     * @ORM\ManyToOne(targetEntity="Aroban\Bundle\UtilisateurBundle\Entity\ArobanUtilisateur", inversedBy="apiTokens")
      */
     protected ArobanUtilisateurInterface $utilisateur;
 
@@ -54,5 +58,12 @@ class ArobanApiToken implements ArobanApiTokenInterface
     public function getUtilisateur(): ?ArobanUtilisateurInterface
     {
         return $this->utilisateur;
+    }
+
+    public function renouvellerLaDateDExpiration(\DateTimeInterface $dateExpiration): self
+    {
+        $this->expiresAt = $dateExpiration;
+
+        return $this;
     }
 }
