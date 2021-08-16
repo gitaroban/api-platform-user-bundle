@@ -3,6 +3,7 @@
 namespace Aroban\Bundle\UtilisateurBundle\DataPersister;
 
 use ApiPlatform\Core\DataPersister\DataPersisterInterface;
+use Aroban\Bundle\UtilisateurBundle\Entity\ArobanApiToken;
 use Aroban\Bundle\UtilisateurBundle\Entity\ArobanUtilisateurInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
@@ -31,8 +32,11 @@ class ArobanUtilisateurDataPersister implements DataPersisterInterface
     {
         $this->encodePassword($data);
         $this->setDefaultRoles($data);
-
         $this->entityManager->persist($data);
+
+        $arobanApiToken = new ArobanApiToken($data);
+        $this->entityManager->persist($arobanApiToken);
+
         $this->entityManager->flush();
     }
 
