@@ -1,0 +1,2 @@
+_aroban_utilisateur:
+    resource: '@UtilisateurBundle/Resources/config/routes.xml'
