@@ -1806,19 +1806,29 @@
             "source": {
                 "type": "git",
                 "url": "git@github.com:gitaroban/utilisateur-bundle.git",
-                "reference": "d91e5735d6435285d24c180ad35440b8768e2dd0"
+                "reference": "10ccc1b9e186760e86f4652ba3339a97279a9cf8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/gitaroban/utilisateur-bundle/zipball/d91e5735d6435285d24c180ad35440b8768e2dd0",
-                "reference": "d91e5735d6435285d24c180ad35440b8768e2dd0",
+                "url": "https://api.github.com/repos/gitaroban/utilisateur-bundle/zipball/10ccc1b9e186760e86f4652ba3339a97279a9cf8",
+                "reference": "10ccc1b9e186760e86f4652ba3339a97279a9cf8",
                 "shasum": ""
             },
             "require": {
-                "php": ">=8.0.2"
+                "api-platform/core": "^2.6",
+                "doctrine/orm": "^2.9",
+                "php": ">=8.0.2",
+                "symfony/framework-bundle": "^5.3",
+                "symfony/security-bundle": "^5.3"
             },
             "default-branch": true,
             "type": "symfony-bundle",
+            "extra": {
+                "symfony": {
+                    "allow-contrib": false,
+                    "require": "5.3.*"
+                }
+            },
             "autoload": {
                 "psr-4": {
                     "Aroban\\Bundle\\UtilisateurBundle\\": ""
@@ -1840,7 +1850,7 @@
                 "source": "https://github.com/gitaroban/utilisateur-bundle/tree/master",
                 "issues": "https://github.com/gitaroban/utilisateur-bundle/issues"
             },
-            "time": "2021-08-23T11:46:37+00:00"
+            "time": "2021-08-23T14:24:54+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
