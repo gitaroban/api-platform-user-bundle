@@ -11,6 +11,7 @@
         "doctrine/doctrine-bundle": "^2.1",
         "doctrine/doctrine-migrations-bundle": "^3.0",
         "doctrine/orm": "^2.7",
+        "gitaroban/utilisateur-bundle": "dev-master",
         "guzzlehttp/guzzle": "^7.0",
         "lexik/jwt-authentication-bundle": "^2.12",
         "nelmio/cors-bundle": "^2.1",
@@ -54,8 +55,7 @@
     },
     "autoload": {
         "psr-4": {
-            "App\\": "src/",
-            "Aroban\\Bundle\\UtilisateurBundle\\": "lib/ArobanUtilisateurBundle/src/"
+            "App\\": "src/"
         }
     },
     "autoload-dev": {
@@ -93,5 +93,9 @@
             "allow-contrib": false,
             "require": "5.3.*"
         }
-    }
+    },
+    "repositories": [{
+        "type": "vcs",
+        "url": "git@github.com:gitaroban/utilisateur-bundle.git"
+    }]
 }

@@ -150,6 +150,9 @@
     "friendsofphp/proxy-manager-lts": {
         "version": "v1.0.5"
     },
+    "gitaroban/utilisateur-bundle": {
+        "version": "dev-master"
+    },
     "guzzlehttp/guzzle": {
         "version": "7.3.0"
     },
