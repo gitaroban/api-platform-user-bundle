@@ -2,3 +2,6 @@
 /.env
 /helm/api-platform/charts/*
 !/helm/api-platform/charts/.gitignore
+
+# Exclure le dossier des bundle
+api/lib/*
