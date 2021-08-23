@@ -9,7 +9,12 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use App\Repository\UtilisateurRepository;
 
 #[ApiResource(
-    collectionOperations: ['get', 'post'],
+    collectionOperations: [
+        'get' => [
+            'security' => 'is_granted(\'ROLE_USER\')'
+        ],
+        'post'
+    ],
     itemOperations: ['get', 'patch'],
     attributes: [
         'pagination_items_per_page' => 10,
